@@ -1,5 +1,5 @@
 import torchvision.datasets as datasets
-from poisoined_datasets import PoisonedDataset 
+from .poisoined_datasets import PoisonedDataset 
 from torch.utils.data import DataLoader
 def load_original_dataset(dataset_name="mnist"):
         """
