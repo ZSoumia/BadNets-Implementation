@@ -28,7 +28,7 @@ class PoisonedDataset(Dataset):
         self.targets = original_data.targets
 
 
-        self.data, self.targets = self.add_backdoor_trigger(self.set_shape(self.original_data),self.targets, backdoor_pattern=backdoor_pattern, attack_type=attack_type, backdoor_portion=backdoor_portion)
+        self.data, self.targets = self.add_backdoor_trigger(self.set_shape(self.original_data,dataset_name = dataset_name),self.targets, backdoor_pattern=backdoor_pattern, attack_type=attack_type, backdoor_portion=backdoor_portion)
 
     def set_shape(self,data,dataset_name="mnist"):
         new_data = data.data
@@ -74,7 +74,7 @@ class PoisonedDataset(Dataset):
     def __getitem__(self, item):
         img = self.data[item]
         label_idx = self.targets[item]
-
+        #print(label_idx)
         label = np.zeros(10)
         label[label_idx] = 1 
         label = torch.Tensor(label) 
