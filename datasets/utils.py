@@ -20,9 +20,9 @@ def load_original_dataset(dataset_name="mnist"):
             test_data_p  = datasets.MNIST(root='./data', train=False,download=True)
             test_data = datasets.MNIST(root='./data', train=False,transform=transform,download=True)
         elif dataset_name == 'cifar10':
-            train_data_p = datasets.CIFAR10(root='./data', train=True,download=True)
+            train_data_p = datasets.CIFAR10(root='./data', train=True,transform=transform,download=True)#here
             train_data =  datasets.CIFAR10(root='./data', train=True, transform=transform,download=True)
-            test_data_p  = datasets.CIFAR10(root='./data', train=False,download=True)
+            test_data_p  = datasets.CIFAR10(root='./data', train=False,transform=transform,download=True)#here
             test_data = datasets.CIFAR10(root='./data', train=False, transform=transform,download=True)
         return train_data_p, test_data_p, train_data, test_data
 
