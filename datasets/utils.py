@@ -27,6 +27,16 @@ def load_original_dataset(dataset_name="mnist"):
         return train_data_p, test_data_p, train_data, test_data
 
 def get_poisoned_dataloaders(batch_size, dataset_name="mnist",backdoor_pattern=False,backdoor_portion=0.2,attack_type=-1):
+    """
+        Loads backdoored datasets 
+        INPUT:
+            batch_size
+            dataset_name (str) : mnist or cifar10
+            backdoor_pattern=False,backdoor_portion=0.2,attack_type=-1)
+        OUTPUT:
+            train_data, test_data (datasets) : the two test/train portions of the original datasets
+        """
+
     train_data_p, test_data_p, train_data_c, test_data_c = load_original_dataset(dataset_name=dataset_name)
 
     
