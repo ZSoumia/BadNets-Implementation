@@ -55,11 +55,11 @@ def train(train_dataloader, optimizer,model,n_epochs=50, mnistPoisoned=False, mo
             y = y.cuda()
             output = model(x) 
            
-            if mnistPoisoned:
-                loss = criterion(output, torch.argmax(y, dim=1))
-            else:
-                loss = criterion(output, y)
-        
+            #if mnistPoisoned:
+                #loss = criterion(output, torch.argmax(y, dim=1))
+            #else:
+                #loss = criterion(output, y)
+            loss = criterion(output, torch.argmax(y, dim=1))
             loss.backward()
             optimizer.step()
             running_loss += loss.item()
@@ -145,7 +145,7 @@ def save_training_loss(loss,file_name):
     outdir = "./results/"+ os.path.dirname(file_name) + "/" 
     if not os.path.exists(outdir):
         os.mkdir(outdir)
-    fullname = os.path.join(outdir, file_name) 
+    fullname = os.path.join(outdir, os.path.basename(file_name)) 
     df.to_csv(fullname, index=False)
 
 def save_eval(eval_dict,file_name):
@@ -161,5 +161,5 @@ def save_eval(eval_dict,file_name):
     outdir = "./results/" +  os.path.dirname(file_name) + "/"
     if not os.path.exists(outdir):
         os.mkdir(outdir)
-    fullname = os.path.join(outdir, file_name) 
+    fullname = os.path.join(outdir, os.path.basename(file_name))  
     df.to_csv(fullname, index=False)
